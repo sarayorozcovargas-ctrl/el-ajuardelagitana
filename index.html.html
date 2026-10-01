@@ -1,0 +1,2350 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>El Ajuar de la Gitana</title>
+
+
+<style>
+
+/* =====================================
+   INTRO DEL VIDEO
+===================================== */
+
+#intro {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100vh;
+
+    background: black;
+
+    z-index: 99999;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transition: opacity 0.8s ease,
+                visibility 0.8s ease;
+
+}
+
+
+#intro.oculto {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+#videoIntro {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+}
+
+
+/* =====================================
+   COLORES
+===================================== */
+
+:root {
+
+    --burdeos: #5b0f1b;
+
+    --burdeos-oscuro: #3d0710;
+
+    --crema: #f8f1e7;
+
+    --crema-claro: #fffaf3;
+
+    --dorado: #b08a52;
+
+    --texto: #35151b;
+
+    --borde: #d9c4a5;
+
+}
+
+
+/* =====================================
+   GENERAL
+===================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    background: var(--crema);
+
+    color: var(--texto);
+
+}
+
+
+/* =====================================
+   CABECERA
+===================================== */
+
+header {
+
+    height: 75px;
+
+    background: var(--crema);
+
+    display: flex;
+
+    align-items: center;
+
+    padding-left: 20px;
+
+    border-bottom: 1px solid var(--borde);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+}
+
+
+/* =====================================
+   TRES RAYITAS
+===================================== */
+
+.menu {
+
+    width: 50px;
+
+    height: 50px;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+}
+
+
+.menu span {
+
+    display: block;
+
+    width: 32px;
+
+    height: 4px;
+
+    background: var(--burdeos);
+
+    margin: 6px 0;
+
+    border-radius: 5px;
+
+}
+
+
+/* =====================================
+   PORTADA
+===================================== */
+
+.portada {
+
+    min-height: calc(100vh - 75px);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px 20px 60px;
+
+}
+
+
+/* =====================================
+   LOGO
+===================================== */
+
+.logo {
+
+    width: 700px;
+
+    max-width: 95%;
+
+    height: auto;
+
+    display: block;
+
+}
+
+
+/* =====================================
+   MENU LATERAL
+===================================== */
+
+.menu-lateral {
+
+    position: fixed;
+
+    left: 0;
+
+    top: 0;
+
+    width: 380px;
+
+    max-width: 90%;
+
+    height: 100vh;
+
+    background: var(--crema-claro);
+
+    z-index: 1000;
+
+    transform: translateX(-100%);
+
+    transition: 0.3s ease;
+
+    overflow-y: auto;
+
+    box-shadow: 6px 0 25px rgba(0,0,0,0.20);
+
+}
+
+
+.menu-lateral.abierto {
+
+    transform: translateX(0);
+
+}
+
+
+/* =====================================
+   CABECERA DEL MENU
+===================================== */
+
+.menu-titulo {
+
+    background: var(--burdeos);
+
+    color: white;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 10;
+
+}
+
+
+/* =====================================
+   TITULO CON FLORECITAS
+===================================== */
+
+.titulo-con-flores {
+
+    margin: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: white;
+
+    font-size: 24px;
+
+}
+
+
+.titulo-con-flores span {
+
+    color: var(--dorado);
+
+    font-size: 25px;
+
+}
+
+
+/* =====================================
+   BOTON CERRAR
+===================================== */
+
+.cerrar {
+
+    background: transparent;
+
+    border: none;
+
+    color: white;
+
+    font-size: 32px;
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================
+   BOTON INICIO
+===================================== */
+
+.boton-inicio {
+
+    width: 100%;
+
+    padding: 17px 20px;
+
+    border: none;
+
+    border-bottom: 1px solid #e3d4c2;
+
+    background: #f3e6d7;
+
+    color: var(--burdeos);
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    text-align: left;
+
+    cursor: pointer;
+
+}
+
+
+.boton-inicio:hover {
+
+    background: #ead8c5;
+
+}
+
+
+/* =====================================
+   CATEGORIAS
+===================================== */
+
+.categoria {
+
+    border-bottom: 1px solid #e3d4c2;
+
+}
+
+
+.boton-categoria {
+
+    width: 100%;
+
+    padding: 18px 20px;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--burdeos);
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.boton-categoria:hover {
+
+    background: #f2e5d7;
+
+}
+
+
+/* =====================================
+   SUBCATEGORIAS
+===================================== */
+
+.subcategorias {
+
+    display: none;
+
+    padding: 0 15px 15px 35px;
+
+}
+
+
+.categoria.abierta .subcategorias {
+
+    display: block;
+
+}
+
+
+.subcategoria {
+
+    width: 100%;
+
+    padding: 10px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #654840;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+}
+
+
+.subcategoria:hover {
+
+    background: #f0e1d1;
+
+    color: var(--burdeos);
+
+}
+
+
+/* =====================================
+   FONDO OSCURO
+===================================== */
+
+.fondo {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.35);
+
+    z-index: 500;
+
+    display: none;
+
+}
+
+
+.fondo.visible {
+
+    display: block;
+
+}
+
+
+/* =====================================
+   CATALOGO
+===================================== */
+
+.catalogo {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 60px 20px;
+
+}
+
+
+.catalogo h2 {
+
+    text-align: center;
+
+    color: var(--burdeos);
+
+    font-size: 35px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.catalogo-descripcion {
+
+    text-align: center;
+
+    color: #765a51;
+
+    margin-bottom: 35px;
+
+}
+
+
+/* =====================================
+   PRODUCTOS
+===================================== */
+
+.grid-productos {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.producto {
+
+    background: var(--crema-claro);
+
+    border: 1px solid var(--borde);
+
+    border-radius: 15px;
+
+    padding: 15px;
+
+    text-align: center;
+
+    transition: 0.2s;
+
+}
+
+
+.producto:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 8px 20px rgba(91,15,27,0.08);
+
+}
+
+
+.foto-producto {
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    background: #eee1d1;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: #876c5e;
+
+}
+
+
+.producto h3 {
+
+    color: var(--burdeos);
+
+    margin: 15px 0 5px;
+
+    font-size: 19px;
+
+}
+
+
+.producto p {
+
+    color: #765a51;
+
+    margin: 5px 0;
+
+}
+
+
+.precio {
+
+    color: var(--burdeos) !important;
+
+    font-weight: bold;
+
+}
+
+
+/* =====================================
+   NOVEDADES
+===================================== */
+
+.novedades {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 20px 20px 70px;
+
+}
+
+
+.novedades h2 {
+
+    text-align: center;
+
+    color: var(--burdeos);
+
+    font-size: 35px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.carrusel {
+
+    overflow: hidden;
+
+}
+
+
+.lista-novedades {
+
+    display: flex;
+
+    gap: 20px;
+
+    transition: transform 0.7s ease;
+
+}
+
+
+.tarjeta {
+
+    min-width: calc(25% - 15px);
+
+    background: var(--crema-claro);
+
+    border: 1px solid var(--borde);
+
+    border-radius: 15px;
+
+    padding: 15px;
+
+    text-align: center;
+
+}
+
+
+.foto-novedad {
+
+    height: 190px;
+
+    background: #eee1d1;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: #876c5e;
+
+}
+
+
+.tarjeta h3 {
+
+    color: var(--burdeos);
+
+}
+
+
+.tarjeta p {
+
+    color: #765a51;
+
+}
+
+
+/* =====================================
+   CONTROLES
+===================================== */
+
+.controles {
+
+    text-align: center;
+
+    margin-top: 20px;
+
+}
+
+
+.controles button {
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--burdeos);
+
+    background: transparent;
+
+    color: var(--burdeos);
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    margin: 5px;
+
+}
+
+
+.controles button:hover {
+
+    background: var(--burdeos);
+
+    color: white;
+
+}
+
+
+/* =====================================
+   CONTACTO
+===================================== */
+
+.contacto {
+
+    background: var(--burdeos);
+
+    color: white;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+}
+
+
+.contacto h2 {
+
+    margin-top: 0;
+
+}
+
+
+.contacto a {
+
+    color: white;
+
+    text-decoration: none;
+
+}
+
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (max-width: 900px) {
+
+    .grid-productos {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+    .tarjeta {
+
+        min-width: calc(50% - 10px);
+
+    }
+
+}
+
+
+/* =====================================
+   MOVIL
+===================================== */
+
+@media (max-width: 600px) {
+
+    .grid-productos {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .tarjeta {
+
+        min-width: 100%;
+
+    }
+
+    .menu-lateral {
+
+        width: 330px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     VIDEO DE PRESENTACIÓN
+===================================== -->
+
+<div id="intro">
+
+    <video
+        id="videoIntro"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+    >
+
+        <source
+            src="intro.mp4"
+            type="video/mp4"
+        >
+
+        Tu navegador no puede reproducir este vídeo.
+
+    </video>
+
+</div>
+
+
+
+<!-- =====================================
+     CABECERA
+===================================== -->
+
+<header>
+
+    <button
+        class="menu"
+        id="abrirMenu"
+        aria-label="Abrir menú"
+    >
+
+        <span></span>
+
+        <span></span>
+
+        <span></span>
+
+    </button>
+
+</header>
+
+
+
+<!-- =====================================
+     FONDO OSCURO
+===================================== -->
+
+<div
+    class="fondo"
+    id="fondo"
+></div>
+
+
+
+<!-- =====================================
+     MENU LATERAL
+===================================== -->
+
+<aside
+    class="menu-lateral"
+    id="menuLateral"
+>
+
+
+    <!-- =================================
+         CABECERA DEL MENU
+    ================================= -->
+
+    <div class="menu-titulo">
+
+
+        <h2 class="titulo-con-flores">
+
+            <span>❀</span>
+
+            Categorías
+
+            <span>❀</span>
+
+        </h2>
+
+
+        <button
+            class="cerrar"
+            id="cerrarMenu"
+        >
+
+            ×
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         INICIO
+    ================================= -->
+
+    <button
+        class="boton-inicio"
+        id="botonInicio"
+    >
+
+        🏠 Inicio
+
+    </button>
+
+
+
+    <!-- =================================
+         TEXTIL DEL HOGAR
+    ================================= -->
+
+    <div class="categoria">
+
+
+        <button class="boton-categoria">
+
+
+            <span>
+                Textil del hogar
+            </span>
+
+
+            <span>
+                +
+            </span>
+
+
+        </button>
+
+
+
+        <div class="subcategorias">
+
+
+            <button class="subcategoria">
+                Toallas y albornoces
+            </button>
+
+
+            <button class="subcategoria">
+                Sábanas de coralina
+            </button>
+
+
+            <button class="subcategoria">
+                Sábanas de franela
+            </button>
+
+
+            <button class="subcategoria">
+                Sábanas infantiles
+            </button>
+
+
+            <button class="subcategoria">
+                Edredones de sherpa
+            </button>
+
+
+            <button class="subcategoria">
+                Boutis acolchadas
+            </button>
+
+
+            <button class="subcategoria">
+                Bajeras
+            </button>
+
+
+            <button class="subcategoria">
+                Almohadas y fundas de sofá
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         BEBÉS
+    ================================= -->
+
+    <div class="categoria">
+
+
+        <button class="boton-categoria">
+
+
+            <span>
+                Bebés
+            </span>
+
+
+            <span>
+                +
+            </span>
+
+
+        </button>
+
+
+
+        <div class="subcategorias">
+
+
+            <button class="subcategoria">
+                Vajilla infantil
+            </button>
+
+
+            <button class="subcategoria">
+                Caramelos y cojines
+            </button>
+
+
+            <button class="subcategoria">
+                Ropa
+            </button>
+
+
+            <button class="subcategoria">
+                Mantas
+            </button>
+
+
+            <button class="subcategoria">
+                Regalos
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         MUEBLES
+    ================================= -->
+
+    <div class="categoria">
+
+
+        <button
+            class="boton-categoria"
+            data-categoria="Muebles"
+        >
+
+
+            <span>
+                Muebles
+            </span>
+
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         PIJAMAS
+    ================================= -->
+
+    <div class="categoria">
+
+
+        <button class="boton-categoria">
+
+
+            <span>
+                Pijamas
+            </span>
+
+
+            <span>
+                +
+            </span>
+
+
+        </button>
+
+
+
+        <div class="subcategorias">
+
+
+            <button class="subcategoria">
+                Pijama mujer
+            </button>
+
+
+            <button class="subcategoria">
+                Pijama hombre
+            </button>
+
+
+            <button class="subcategoria">
+                Pijama niño
+            </button>
+
+
+            <button class="subcategoria">
+                Pijama niña
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         PRODUCTOS DISNEY
+    ================================= -->
+
+    <div class="categoria">
+
+
+        <button class="boton-categoria">
+
+
+            <span>
+                Productos Disney
+            </span>
+
+
+            <span>
+                +
+            </span>
+
+
+        </button>
+
+
+
+        <div class="subcategorias">
+
+
+            <button class="subcategoria">
+                Mochilas
+            </button>
+
+
+            <button class="subcategoria">
+                Merienda
+            </button>
+
+
+            <button class="subcategoria">
+                Estuches
+            </button>
+
+
+            <button class="subcategoria">
+                Paraguas
+            </button>
+
+
+            <button class="subcategoria">
+                Neceser
+            </button>
+
+
+            <button class="subcategoria">
+                Betis
+            </button>
+
+
+            <button class="subcategoria">
+                Sevilla
+            </button>
+
+
+            <button class="subcategoria">
+                Real Madrid
+            </button>
+
+
+            <button class="subcategoria">
+                F.C. Barcelona
+            </button>
+
+
+            <button class="subcategoria">
+                Juguetes
+            </button>
+
+
+            <button class="subcategoria">
+                Lego
+            </button>
+
+
+            <button class="subcategoria">
+                Textil invierno
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         MODA
+    ================================= -->
+
+    <div class="categoria">
+
+
+        <button class="boton-categoria">
+
+
+            <span>
+                Moda
+            </span>
+
+
+            <span>
+                +
+            </span>
+
+
+        </button>
+
+
+
+        <div class="subcategorias">
+
+
+            <button class="subcategoria">
+                Pantalones
+            </button>
+
+
+            <button class="subcategoria">
+                Camisetas
+            </button>
+
+
+            <button class="subcategoria">
+                Camisas
+            </button>
+
+
+            <button class="subcategoria">
+                Conjuntos
+            </button>
+
+
+            <button class="subcategoria">
+                Rebecas
+            </button>
+
+
+            <button class="subcategoria">
+                Abrigos
+            </button>
+
+
+            <button class="subcategoria">
+                Chándals
+            </button>
+
+
+            <button class="subcategoria">
+                Chaquetas
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- =====================================
+     PORTADA
+===================================== -->
+
+<main>
+
+
+<section
+    class="portada"
+    id="inicio"
+>
+
+
+    <img
+        src="logo.jpg.jpeg"
+        alt="El Ajuar de la Gitana"
+        class="logo"
+    >
+
+
+</section>
+
+
+
+<!-- =====================================
+     CATALOGO
+===================================== -->
+
+<section
+    class="catalogo"
+    id="catalogo"
+>
+
+
+    <h2 id="tituloCatalogo">
+
+        Todos nuestros productos
+
+    </h2>
+
+
+    <p
+        class="catalogo-descripcion"
+        id="descripcionCatalogo"
+    >
+
+        Elige una categoría o subcategoría
+        para ver los productos.
+
+    </p>
+
+
+
+    <div
+        class="grid-productos"
+        id="gridProductos"
+    >
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================
+     NOVEDADES
+===================================== -->
+
+<section class="novedades">
+
+
+    <h2>
+
+        Novedades y recomendados
+
+    </h2>
+
+
+
+    <div class="carrusel">
+
+
+        <div
+            class="lista-novedades"
+            id="listaNovedades"
+        >
+
+
+            <article class="tarjeta">
+
+                <div class="foto-novedad">
+
+                    Foto del producto
+
+                </div>
+
+                <h3>
+
+                    Producto nuevo
+
+                </h3>
+
+                <p>
+
+                    Próximamente
+
+                </p>
+
+            </article>
+
+
+
+            <article class="tarjeta">
+
+                <div class="foto-novedad">
+
+                    Foto del producto
+
+                </div>
+
+                <h3>
+
+                    Producto nuevo
+
+                </h3>
+
+                <p>
+
+                    Próximamente
+
+                </p>
+
+            </article>
+
+
+
+            <article class="tarjeta">
+
+                <div class="foto-novedad">
+
+                    Foto del producto
+
+                </div>
+
+                <h3>
+
+                    Producto recomendado
+
+                </h3>
+
+                <p>
+
+                    Próximamente
+
+                </p>
+
+            </article>
+
+
+
+            <article class="tarjeta">
+
+                <div class="foto-novedad">
+
+                    Foto del producto
+
+                </div>
+
+                <h3>
+
+                    Nueva colección
+
+                </h3>
+
+                <p>
+
+                    Próximamente
+
+                </p>
+
+            </article>
+
+
+
+            <article class="tarjeta">
+
+                <div class="foto-novedad">
+
+                    Foto del producto
+
+                </div>
+
+                <h3>
+
+                    Más novedades
+
+                </h3>
+
+                <p>
+
+                    Próximamente
+
+                </p>
+
+            </article>
+
+
+
+            <article class="tarjeta">
+
+                <div class="foto-novedad">
+
+                    Foto del producto
+
+                </div>
+
+                <h3>
+
+                    Producto destacado
+
+                </h3>
+
+                <p>
+
+                    Próximamente
+
+                </p>
+
+            </article>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="controles">
+
+
+        <button id="anterior">
+
+            ‹
+
+        </button>
+
+
+        <button id="siguiente">
+
+            ›
+
+        </button>
+
+
+    </div>
+
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================
+     CONTACTO
+===================================== -->
+
+<footer class="contacto">
+
+
+    <h2>
+
+        Contacto
+
+    </h2>
+
+
+    <p>
+
+        📞
+
+        <a href="tel:+34655790308">
+
+            +34 655 790 308
+
+        </a>
+
+    </p>
+
+
+    <p>
+
+        ✉️
+
+        <a href="mailto:elajuardelagitana@gmail.com">
+
+            elajuardelagitana@gmail.com
+
+        </a>
+
+    </p>
+
+
+</footer>
+
+
+
+<script>
+
+
+/* =====================================
+   VIDEO DE PRESENTACIÓN
+===================================== */
+
+const intro =
+document.getElementById(
+    "intro"
+);
+
+
+const videoIntro =
+document.getElementById(
+    "videoIntro"
+);
+
+
+/*
+   Cuando el vídeo termine,
+   ocultamos la pantalla del vídeo
+   y mostramos la página.
+*/
+
+videoIntro.addEventListener(
+    "ended",
+    function() {
+
+        intro.classList.add(
+            "oculto"
+        );
+
+    }
+);
+
+
+/*
+   Si el vídeo da algún error,
+   mostramos igualmente la página.
+*/
+
+videoIntro.addEventListener(
+    "error",
+    function() {
+
+        intro.classList.add(
+            "oculto"
+        );
+
+    }
+);
+
+
+/* =====================================
+   ELEMENTOS DEL MENU
+===================================== */
+
+const abrirMenu =
+document.getElementById(
+    "abrirMenu"
+);
+
+
+const cerrarMenu =
+document.getElementById(
+    "cerrarMenu"
+);
+
+
+const menuLateral =
+document.getElementById(
+    "menuLateral"
+);
+
+
+const fondo =
+document.getElementById(
+    "fondo"
+);
+
+
+const botonInicio =
+document.getElementById(
+    "botonInicio"
+);
+
+
+
+/* =====================================
+   ABRIR MENU
+===================================== */
+
+abrirMenu.addEventListener(
+    "click",
+    function() {
+
+        menuLateral.classList.add(
+            "abierto"
+        );
+
+        fondo.classList.add(
+            "visible"
+        );
+
+    }
+);
+
+
+
+/* =====================================
+   CERRAR MENU
+===================================== */
+
+cerrarMenu.addEventListener(
+    "click",
+    function() {
+
+        menuLateral.classList.remove(
+            "abierto"
+        );
+
+        fondo.classList.remove(
+            "visible"
+        );
+
+    }
+);
+
+
+
+/* =====================================
+   CERRAR PULSANDO FUERA
+===================================== */
+
+fondo.addEventListener(
+    "click",
+    function() {
+
+        menuLateral.classList.remove(
+            "abierto"
+        );
+
+        fondo.classList.remove(
+            "visible"
+        );
+
+    }
+);
+
+
+
+/* =====================================
+   BOTON INICIO
+===================================== */
+
+botonInicio.addEventListener(
+    "click",
+    function() {
+
+
+        menuLateral.classList.remove(
+            "abierto"
+        );
+
+
+        fondo.classList.remove(
+            "visible"
+        );
+
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+
+    }
+);
+
+
+
+/* =====================================
+   CATEGORIAS
+===================================== */
+
+const categorias =
+document.querySelectorAll(
+    ".categoria"
+);
+
+
+categorias.forEach(
+    function(categoria) {
+
+
+        const boton =
+        categoria.querySelector(
+            ".boton-categoria"
+        );
+
+
+        boton.addEventListener(
+            "click",
+            function() {
+
+
+                const subcategorias =
+                categoria.querySelector(
+                    ".subcategorias"
+                );
+
+
+                /* Cerrar otras categorias */
+
+                document
+                .querySelectorAll(
+                    ".categoria"
+                )
+                .forEach(
+                    function(otra) {
+
+
+                        if (
+                            otra !== categoria
+                        ) {
+
+
+                            otra.classList.remove(
+                                "abierta"
+                            );
+
+
+                        }
+
+
+                    }
+                );
+
+
+                /* Abrir esta */
+
+                if (
+                    subcategorias
+                ) {
+
+
+                    categoria.classList.toggle(
+                        "abierta"
+                    );
+
+
+                }
+
+
+                /* Muebles */
+
+                else {
+
+
+                    mostrarProductos(
+                        "Muebles"
+                    );
+
+
+                    cerrarMenuCompleto();
+
+
+                }
+
+
+            }
+        );
+
+
+    }
+);
+
+
+
+/* =====================================
+   SUBCATEGORIAS
+===================================== */
+
+const subcategorias =
+document.querySelectorAll(
+    ".subcategoria"
+);
+
+
+subcategorias.forEach(
+    function(boton) {
+
+
+        boton.addEventListener(
+            "click",
+            function() {
+
+
+                const nombre =
+                boton.textContent.trim();
+
+
+                mostrarProductos(
+                    nombre
+                );
+
+
+                cerrarMenuCompleto();
+
+
+            }
+        );
+
+
+    }
+);
+
+
+
+/* =====================================
+   CERRAR MENU
+===================================== */
+
+function cerrarMenuCompleto() {
+
+
+    menuLateral.classList.remove(
+        "abierto"
+    );
+
+
+    fondo.classList.remove(
+        "visible"
+    );
+
+
+}
+
+
+
+/* =====================================
+   CREAR PRODUCTO
+===================================== */
+
+function crearProducto(
+    nombre,
+    numero
+) {
+
+
+    const tarjeta =
+    document.createElement(
+        "article"
+    );
+
+
+    tarjeta.className =
+        "producto";
+
+
+    tarjeta.innerHTML = `
+
+        <div class="foto-producto">
+
+            Aquí irá la foto
+
+        </div>
+
+
+        <h3>
+
+            ${nombre} ${numero}
+
+        </h3>
+
+
+        <p>
+
+            Descripción del producto
+
+        </p>
+
+
+        <p class="precio">
+
+            Precio: próximamente
+
+        </p>
+
+    `;
+
+
+    return tarjeta;
+
+}
+
+
+
+/* =====================================
+   MOSTRAR PRODUCTOS
+===================================== */
+
+function mostrarProductos(
+    nombre
+) {
+
+
+    const titulo =
+    document.getElementById(
+        "tituloCatalogo"
+    );
+
+
+    const descripcion =
+    document.getElementById(
+        "descripcionCatalogo"
+    );
+
+
+    const grid =
+    document.getElementById(
+        "gridProductos"
+    );
+
+
+    titulo.textContent =
+        nombre;
+
+
+    descripcion.textContent =
+        "Productos disponibles en " +
+        nombre;
+
+
+    grid.innerHTML =
+        "";
+
+
+    for (
+        let numero = 1;
+        numero <= 8;
+        numero++
+    ) {
+
+
+        const producto =
+        crearProducto(
+            nombre,
+            numero
+        );
+
+
+        grid.appendChild(
+            producto
+        );
+
+
+    }
+
+
+    document
+    .getElementById(
+        "catalogo"
+    )
+    .scrollIntoView({
+
+        behavior: "smooth"
+
+    });
+
+
+}
+
+
+
+/* =====================================
+   PRODUCTOS INICIALES
+===================================== */
+
+mostrarProductos(
+    "El Ajuar de la Gitana"
+);
+
+
+
+/* =====================================
+   CARRUSEL
+===================================== */
+
+const listaNovedades =
+document.getElementById(
+    "listaNovedades"
+);
+
+
+const tarjetas =
+document.querySelectorAll(
+    ".tarjeta"
+);
+
+
+let posicion =
+    0;
+
+
+
+function cantidadVisibles() {
+
+
+    if (
+        window.innerWidth <= 600
+    ) {
+
+
+        return 1;
+
+
+    }
+
+
+    if (
+        window.innerWidth <= 900
+    ) {
+
+
+        return 2;
+
+
+    }
+
+
+    return 4;
+
+}
+
+
+
+/* =====================================
+   MOVER CARRUSEL
+===================================== */
+
+function moverCarrusel(
+    direccion
+) {
+
+
+    const visibles =
+    cantidadVisibles();
+
+
+    const maximo =
+    Math.max(
+        0,
+        tarjetas.length - visibles
+    );
+
+
+    posicion =
+        posicion + direccion;
+
+
+    if (
+        posicion > maximo
+    ) {
+
+
+        posicion = 0;
+
+
+    }
+
+
+    if (
+        posicion < 0
+    ) {
+
+
+        posicion = maximo;
+
+
+    }
+
+
+    const ancho =
+    tarjetas[0]
+    .getBoundingClientRect()
+    .width + 20;
+
+
+    listaNovedades.style.transform =
+        "translateX(-" +
+        (posicion * ancho) +
+        "px)";
+
+
+}
+
+
+
+/* SIGUIENTE */
+
+document
+.getElementById(
+    "siguiente"
+)
+.addEventListener(
+    "click",
+    function() {
+
+
+        moverCarrusel(1);
+
+
+    }
+);
+
+
+
+/* ANTERIOR */
+
+document
+.getElementById(
+    "anterior"
+)
+.addEventListener(
+    "click",
+    function() {
+
+
+        moverCarrusel(-1);
+
+
+    }
+);
+
+
+
+/* =====================================
+   CAMBIO AUTOMATICO CADA 10 SEGUNDOS
+===================================== */
+
+setInterval(
+    function() {
+
+
+        moverCarrusel(1);
+
+
+    },
+    10000
+);
+
+
+
+/* =====================================
+   REAJUSTAR AL CAMBIAR DE TAMAÑO
+===================================== */
+
+window.addEventListener(
+    "resize",
+    function() {
+
+
+        posicion = 0;
+
+
+        listaNovedades.style.transform =
+            "translateX(0)";
+
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
